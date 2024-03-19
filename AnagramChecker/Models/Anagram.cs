@@ -2,11 +2,14 @@ namespace AnagramChecker.Models
 {
 	public class Anagram
 	{
-		public string Word { get; set;}
+		public string TestWord { get; set;}
 		
-		public Anagram(string inputWord)
+		public string[] Guesses { get; set;}
+		
+		public Anagram(string word, string[] guessArray)
 		{
-			Word = inputWord;
+			TestWord = word;
+			Guesses = guessArray;
 		}
 	}
 }
