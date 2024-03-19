@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AnagramChecker.Models;
 using System;
+using System.Linq;
 
 namespace AnagramChecker.Tests
 {
@@ -33,7 +34,7 @@ namespace AnagramChecker.Tests
 		}
 		
 		[TestMethod]
-		public void GetGuesses_ReturnsGuesses_Array()
+		public void GetGuesses_ReturnsGuesses_StringArray()
 		{
 			string[] guesses = {"magic", "praised", "hope"};
 			Anagram newAnagram = new("despair", guesses);
@@ -42,12 +43,22 @@ namespace AnagramChecker.Tests
 		}
 		
 		[TestMethod]
-		public void SetGuesses_SetsValueOfGuesses_Array()
+		public void SetGuesses_SetsValueOfGuesses_StringArray()
 		{
 			Anagram newAnagram = new("despair", new[] {"magic", "praised", "aspired", "hope"});
 			string[] newGuesses = {"aspired", "tragedy", "wish", "grief"};
 			newAnagram.Guesses = newGuesses;
 			Assert.AreEqual(newGuesses, newAnagram.Guesses);
+		}
+		
+		[TestMethod]
+		public void GetLetters_ReturnsLetters_CharArray()
+		{
+			string word = "despair";
+			char[] letters = new[] {'d', 'e', 's', 'p', 'a', 'i', 'r'};
+			Anagram newAnagram = new(word, new[] {"guess1", "guess2"});
+			char[] result = newAnagram.Letters;
+			Assert.IsTrue(letters.SequenceEqual(result));
 		}
 	}
 }

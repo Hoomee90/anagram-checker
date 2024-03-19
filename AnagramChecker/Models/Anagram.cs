@@ -1,3 +1,5 @@
+using System;
+
 namespace AnagramChecker.Models
 {
 	public class Anagram
@@ -6,10 +8,13 @@ namespace AnagramChecker.Models
 		
 		public string[] Guesses { get; set;}
 		
+		public char[] Letters { get;}
+		
 		public Anagram(string word, string[] guessArray)
 		{
 			TestWord = word;
 			Guesses = guessArray;
+			Letters = word.ToCharArray();
 		}
 	}
 }
