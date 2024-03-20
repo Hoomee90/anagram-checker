@@ -60,5 +60,15 @@ namespace AnagramChecker.Tests
 			char[] result = newAnagram.Letters;
 			Assert.IsTrue(letters.SequenceEqual(result));
 		}
+		
+		[TestMethod]
+		public void SetLetters_SetsValueOfLettersOnTestWordSet_Void()
+		{
+			Anagram newAnagram = new("despair", new[] {"guess1", "guess2"});
+			char[] letters = new[] {'h', 'o', 'p', 'e'};
+			newAnagram.TestWord = "hope";
+			char[] result = newAnagram.Letters;
+			Assert.IsTrue(letters.SequenceEqual(result));
+		}
 	}
 }

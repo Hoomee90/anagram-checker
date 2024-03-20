@@ -8,13 +8,15 @@ namespace AnagramChecker.Models
 		
 		public string[] Guesses { get; set;}
 		
-		public char[] Letters { get;}
+		public char[] Letters 
+		{ 
+			get { return TestWord.ToCharArray(); }
+		}
 		
 		public Anagram(string word, string[] guessArray)
 		{
 			TestWord = word;
 			Guesses = guessArray;
-			Letters = word.ToCharArray();
 		}
 	}
 }
