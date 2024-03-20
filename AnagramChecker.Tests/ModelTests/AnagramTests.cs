@@ -1,7 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AnagramChecker.Models;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace AnagramChecker.Tests
 {
@@ -39,7 +39,7 @@ namespace AnagramChecker.Tests
 			string[] guesses = {"magic", "praised", "hope"};
 			Anagram newAnagram = new("despair", guesses);
 			string[] result = newAnagram.Guesses;
-			Assert.AreEqual(guesses, result);
+			CollectionAssert.AreEqual(guesses, result);
 		}
 		
 		[TestMethod]
@@ -48,7 +48,7 @@ namespace AnagramChecker.Tests
 			Anagram newAnagram = new("despair", new[] {"magic", "praised", "hope"});
 			string[] newGuesses = {"aspired", "tragedy", "wish", "grief"};
 			newAnagram.Guesses = newGuesses;
-			Assert.AreEqual(newGuesses, newAnagram.Guesses);
+			CollectionAssert.AreEqual(newGuesses, newAnagram.Guesses);
 		}
 		
 		[TestMethod]
@@ -58,7 +58,7 @@ namespace AnagramChecker.Tests
 			char[] letters = new[] {'d', 'e', 's', 'p', 'a', 'i', 'r'};
 			Anagram newAnagram = new(word, new[] {"guess1", "guess2"});
 			char[] result = newAnagram.Letters;
-			Assert.IsTrue(letters.SequenceEqual(result));
+			CollectionAssert.AreEqual(letters, result);
 		}
 		
 		[TestMethod]
@@ -68,7 +68,7 @@ namespace AnagramChecker.Tests
 			char[] letters = new[] {'h', 'o', 'p', 'e'};
 			newAnagram.TestWord = "hope";
 			char[] result = newAnagram.Letters;
-			Assert.IsTrue(letters.SequenceEqual(result));
+			CollectionAssert.AreEqual(letters, result);
 		}
 		
 		[TestMethod]
@@ -92,15 +92,15 @@ namespace AnagramChecker.Tests
 		{
 			Anagram newAnagram = new("despair", new[] {"curse", "miracle", "gem"});
 			string[] result = newAnagram.FilterAnagrams();
-			Assert.AreEqual(Array.Empty<string>(), result);
+			Assert.IsTrue(result.Length == 0);
 		}
 		
-		// [TestMethod]
-		// public void	FilterAnagrams_FindsAllAnagramsOfTestWordInGuesses_StringArray()
-		// {
-		// 	Anagram newAnagram = new("despair", new[] {"magic", "praised", "tragedy", "wish", "aspired"});
-		// 	string[] result = newAnagram.FilterAnagrams();
-		// 	Assert.AreEqual(new[] {"praised", "aspire"}, result);
-		// }
+		[TestMethod]
+		public void	FilterAnagrams_FindsAllAnagramsOfTestWordInGuesses_StringArray()
+		{
+			Anagram newAnagram = new("despair", new[] {"magic", "praised", "tragedy", "wish", "aspired"});
+			string[] result = newAnagram.FilterAnagrams();
+			CollectionAssert.AreEqual(new[] {"praised", "aspired"}, result);
+		}
 	}
 }

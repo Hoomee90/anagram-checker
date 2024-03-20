@@ -22,7 +22,8 @@ namespace AnagramChecker.Models
 		
 		public string[] FilterAnagrams()
 		{
-			return Array.Empty<string>();
+			string[] anagrams = Guesses.Where(word => AreAnagrams(TestWord, word)).ToArray();
+			return anagrams;
 		}
 		
 		public static bool AreAnagrams(string word1, string word2)
