@@ -45,7 +45,7 @@ namespace AnagramChecker.Tests
 		[TestMethod]
 		public void SetGuesses_SetsValueOfGuesses_StringArray()
 		{
-			Anagram newAnagram = new("despair", new[] {"magic", "praised", "aspired", "hope"});
+			Anagram newAnagram = new("despair", new[] {"magic", "praised", "hope"});
 			string[] newGuesses = {"aspired", "tragedy", "wish", "grief"};
 			newAnagram.Guesses = newGuesses;
 			Assert.AreEqual(newGuesses, newAnagram.Guesses);
@@ -70,5 +70,21 @@ namespace AnagramChecker.Tests
 			char[] result = newAnagram.Letters;
 			Assert.IsTrue(letters.SequenceEqual(result));
 		}
+		
+		[TestMethod]
+		
+		public void AreAnagrams_DeterminesWhenInputsNotAnagrams_Bool()
+		{
+			bool result = Anagram.AreAnagrams("dessert", "witch");
+			Assert.IsFalse(result);
+		}
+		
+		// [TestMethod]
+		// public void	FilterGuesses_FindsAllAnagramsOfTestWordInGuesses_StringArray()
+		// {
+		// 	Anagram newAnagram = new("despair", new[] {"magic", "praised", "tragedy", "wish", "aspired"});
+		// 	string[] result = newAnagram.FilterGuesses();
+		// 	Assert.AreEqual(new[] {"praised", "aspire"}, result);
+		// }
 	}
 }

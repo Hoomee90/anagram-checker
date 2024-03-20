@@ -18,5 +18,15 @@ namespace AnagramChecker.Models
 			TestWord = word;
 			Guesses = guessArray;
 		}
+		
+		// public string[] FilterGuesses()
+		// {
+
+		// }
+		
+		public static bool AreAnagrams(string word1, string word2)
+		{
+			return false;
+		}
 	}
 }
