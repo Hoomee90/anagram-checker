@@ -79,6 +79,14 @@ namespace AnagramChecker.Tests
 			Assert.IsFalse(result);
 		}
 		
+		[TestMethod]
+		
+		public void AreAnagrams_DeterminesWhenInputsAreAnagrams_Bool()
+		{
+			bool result = Anagram.AreAnagrams("dessert", "tressed");
+			Assert.IsTrue(result);
+		}
+		
 		// [TestMethod]
 		// public void	FilterGuesses_FindsAllAnagramsOfTestWordInGuesses_StringArray()
 		// {

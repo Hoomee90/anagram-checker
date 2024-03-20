@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace AnagramChecker.Models
 {
@@ -26,7 +27,7 @@ namespace AnagramChecker.Models
 		
 		public static bool AreAnagrams(string word1, string word2)
 		{
-			return false;
+			return word1.OrderBy(c => c).SequenceEqual(word2.OrderBy(c => c));
 		}
 	}
 }
