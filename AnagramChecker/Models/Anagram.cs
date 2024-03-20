@@ -20,9 +20,9 @@ namespace AnagramChecker.Models
 			Guesses = guessArray;
 		}
 		
-		public string[] FilterAnagrams()
+		public string[] FilterAnagrams(bool allowPartial = false)
 		{
-			string[] anagrams = Guesses.Where(word => AreAnagrams(TestWord, word)).ToArray();
+			string[] anagrams = Guesses.Where(word => allowPartial ? ArePartial(TestWord, word) : AreAnagrams(TestWord, word)).ToArray();
 			return anagrams;
 		}
 		
@@ -34,6 +34,11 @@ namespace AnagramChecker.Models
 			}
 			
 			return word1.OrderBy(c => c).SequenceEqual(word2.OrderBy(c => c));
+		}
+		
+		public static bool ArePartial(string word1, string word2)
+		{
+			return word2.All(c => word1.Contains(c));
 		}
 	}
 }

@@ -1,7 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AnagramChecker.Models;
 using System;
-using System.Collections.Generic;
 
 namespace AnagramChecker.Tests
 {
@@ -101,6 +100,14 @@ namespace AnagramChecker.Tests
 			Anagram newAnagram = new("despair", new[] {"magic", "praised", "tragedy", "wish", "aspired"});
 			string[] result = newAnagram.FilterAnagrams();
 			CollectionAssert.AreEqual(new[] {"praised", "aspired"}, result);
+		}
+		
+		[TestMethod]
+		public void	FilterAnagrams_DeterminePartialMatches_StringArray()
+		{
+			Anagram newAnagram = new("memories", new[] {"memorise", "entropy", "morse", "isomer", "barrier"});
+			string[] result = newAnagram.FilterAnagrams(true);
+			CollectionAssert.AreEqual(new[] {"memorise", "morse", "isomer"}, result);
 		}
 	}
 }
