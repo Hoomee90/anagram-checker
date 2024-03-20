@@ -87,11 +87,19 @@ namespace AnagramChecker.Tests
 			Assert.IsTrue(result);
 		}
 		
+		[TestMethod]
+		public void	FilterAnagrams_DeterminesWhenNoAnagrams_StringArray()
+		{
+			Anagram newAnagram = new("despair", new[] {"curse", "miracle", "gem"});
+			string[] result = newAnagram.FilterAnagrams();
+			Assert.AreEqual(Array.Empty<string>(), result);
+		}
+		
 		// [TestMethod]
-		// public void	FilterGuesses_FindsAllAnagramsOfTestWordInGuesses_StringArray()
+		// public void	FilterAnagrams_FindsAllAnagramsOfTestWordInGuesses_StringArray()
 		// {
 		// 	Anagram newAnagram = new("despair", new[] {"magic", "praised", "tragedy", "wish", "aspired"});
-		// 	string[] result = newAnagram.FilterGuesses();
+		// 	string[] result = newAnagram.FilterAnagrams();
 		// 	Assert.AreEqual(new[] {"praised", "aspire"}, result);
 		// }
 	}
