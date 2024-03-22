@@ -37,17 +37,42 @@ namespace AnagramChecker
 				Console.WriteLine("-----------------------------------------");
 				if (userResponse == "y")
 				{
-					DisplayAnagrams(anagram);
-				} else {
+					CheckAnagrams(anagram);
+				} 
+				else 
+				{
 					Console.WriteLine("Guess those words sucked");
 					MakeAnagram();
 				}
 			}
 			
-			static void DisplayAnagrams(Anagram anagram)
+			static void CheckAnagrams(Anagram anagram)
+			{
+				Console.WriteLine("Now would you like to know only the words that are made up of exactly the same letters with the exact same length?");
+				Console.WriteLine("Or would you like to see partial matches, requiring words only be made up of only characters present in the input word?");
+				Console.WriteLine("enter 'full' or 'partial' as appropriate");
+				string userResponse = Console.ReadLine().ToLower();
+				Console.WriteLine("-----------------------------------------");
+				if (userResponse == "full")
+				{
+					DisplayAnagrams(anagram.FilterAnagrams());
+				} 
+				else if (userResponse == "partial")
+				{
+					DisplayAnagrams(anagram.FilterAnagrams(true));
+				}
+				else
+				{
+					Console.WriteLine("Looks like you can't follow directions very well");
+					Console.WriteLine("Try again");
+					CheckAnagrams(anagram);
+				}
+			}
+			
+			static void DisplayAnagrams(string[] anagramList)
 			{
 
 			}
-		}
+	}
 	}
 }
