@@ -105,9 +105,9 @@ namespace AnagramChecker.Tests
 		[TestMethod]
 		public void	FilterAnagrams_DeterminePartialMatches_StringArray()
 		{
-			Anagram newAnagram = new("memories", new[] {"memorise", "entropy", "morse", "isomer", "barrier"});
+			Anagram newAnagram = new("memories", new[] {"memorise", "entropy", "morse", "rose", "barrier"});
 			string[] result = newAnagram.FilterAnagrams(true);
-			CollectionAssert.AreEqual(new[] {"memorise", "morse", "isomer"}, result);
+			CollectionAssert.AreEqual(new[] {"memorise", "morse", "rose"}, result);
 		}
 	}
 }
