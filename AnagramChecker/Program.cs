@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using AnagramChecker.Models;
 
 namespace AnagramChecker
@@ -30,7 +31,7 @@ namespace AnagramChecker
 				Console.WriteLine("-----------------------------------------");
 				Console.WriteLine("We have collected your input");
 				Console.WriteLine("The chosen word is \"{0}\"", anagram.TestWord);
-				Console.WriteLine("And the words to check are \"{0}\" and \"{1}\"", string.Join(", ", anagram.Guesses, 0, anagram.Guesses.Length - 1), anagram.Guesses[^1]);
+				Console.WriteLine("And the words to check are \"{0}\" and \"{1}\"", string.Join("\" \"", anagram.Guesses, 0, anagram.Guesses.Length - 1), anagram.Guesses[^1]);
 				Console.WriteLine("Is this correct??");
 				Console.WriteLine("'y' to continue, or anything else to reenter your words");
 				string userResponse = Console.ReadLine().ToLower();
@@ -55,11 +56,11 @@ namespace AnagramChecker
 				Console.WriteLine("-----------------------------------------");
 				if (userResponse == "full")
 				{
-					DisplayAnagrams(anagram.FilterAnagrams());
+					DisplayAnagrams(anagram, false);
 				} 
 				else if (userResponse == "partial")
 				{
-					DisplayAnagrams(anagram.FilterAnagrams(true));
+					DisplayAnagrams(anagram, true);
 				}
 				else
 				{
@@ -69,10 +70,29 @@ namespace AnagramChecker
 				}
 			}
 			
-			static void DisplayAnagrams(string[] anagramList)
+			static void DisplayAnagrams(Anagram anagram, bool partial)
 			{
-
+				Console.WriteLine("Of your list of words, the full {0}anagrams of \"{1}\" are:", partial ? "and partial " : "", anagram.TestWord);
+				string[] anagramList = anagram.FilterAnagrams(partial);
+				foreach (string word in anagramList)
+				{
+					Console.WriteLine("\"{0}\"", word);
+				}
+				Console.Write("press enter to continue");
+				Console.ReadLine();
+				Console.WriteLine("-----------------------------------------");
+				Finish();
 			}
-	}
+			
+			static void Finish()
+			{
+				Console.WriteLine("Was that useful to you?");
+				Console.WriteLine("Did you have fun?");
+				Console.WriteLine("'y' for yes, or anything else for not");
+				Thread.Sleep(1700);
+				Console.WriteLine("Just kidding! We don't care");
+				Console.WriteLine("Get out of here");
+			}
+		}
 	}
 }
